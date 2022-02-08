@@ -1,6 +1,6 @@
 using UnityEngine;
 using Unity.Robotics.ROSTCPConnector;
-using RosMessageTypes.Geometry;
+using RosMessageTypes.Sensor;
 
 
 namespace RosSharp.Control
@@ -19,6 +19,12 @@ namespace RosSharp.Control
         private ArticulationBody fl_wheel;
         private ArticulationBody fr_wheel;
 
+        private double rl_wheel_vel;
+        private double rr_wheel_vel;
+        private double fl_wheel_vel;
+        private double fr_wheel_vel;
+    
+
         private float rosLinear = 0f;
         private float rosAngular = 0f;
         public float maxLinearSpeed = 1.5f; //  m/s
@@ -31,7 +37,7 @@ namespace RosSharp.Control
         void Start()
         {
             ros = ROSConnection.GetOrCreateInstance();
-            ros.Subscribe<TwistMsg>("cmd_vel", ReceiveROSCmd);
+            ros.Subscribe<JointStateMsg>("joint_states", ReceiveROSCmd);
             rl_wheel = rear_left_wheel.GetComponent<ArticulationBody>();
             rr_wheel = rear_right_wheel.GetComponent<ArticulationBody>();
             fl_wheel = front_left_wheel.GetComponent<ArticulationBody>();
@@ -45,11 +51,18 @@ namespace RosSharp.Control
             Debug.Log("Start");
         }
 
-        void ReceiveROSCmd(TwistMsg cmdVel){
+        void ReceiveROSCmd(JointStateMsg joint_state_msg){
             Debug.Log("ReceiveROSCmd");
-            rosLinear = (float)cmdVel.linear.x;
-            rosAngular = (float)cmdVel.angular.z;
-            RobotInput(rosLinear, rosAngular);                   
+            rl_wheel_vel = joint_state_msg.velocity[2];
+            rr_wheel_vel = joint_state_msg.velocity[3];
+            fl_wheel_vel = joint_state_msg.velocity[0];
+            fr_wheel_vel = joint_state_msg.velocity[1];
+
+            SetSpeed(rl_wheel, (float) rl_wheel_vel);
+            SetSpeed(rr_wheel, (float) rr_wheel_vel);
+            SetSpeed(fl_wheel, (float) fl_wheel_vel);
+            SetSpeed(fr_wheel, (float) fr_wheel_vel);
+                          
         }
 
         private void SetSpeed(ArticulationBody joint, float wheelSpeed = float.NaN)
@@ -61,7 +74,7 @@ namespace RosSharp.Control
             }
             else
             {
-                drive.targetVelocity = wheelSpeed;
+                drive.targetVelocity = wheelSpeed*Mathf.Rad2Deg;
             }
             joint.xDrive = drive;
         }
@@ -73,42 +86,7 @@ namespace RosSharp.Control
             drive.damping = damping;
             joint.xDrive = drive;
         }
-        private void RobotInput(float speed, float rotSpeed) // m/s and rad/s
-        {
-            if (speed > maxLinearSpeed)
-            {
-                speed = maxLinearSpeed;
-            }
-            if (rotSpeed > maxRotationalSpeed)
-            {
-                rotSpeed = maxRotationalSpeed;
-            }
-            float fl_rotSpeed = (speed / wheelRadius);
-            float fr_rotSpeed= fl_rotSpeed;
-            float rl_rotSpeed = (speed / wheelRadius);
-            float rr_rotSpeed = rl_rotSpeed;
-            float wheelSpeedDiff = ((rotSpeed * trackWidth) / wheelRadius);
-            Debug.Log(wheelSpeedDiff);
-
-            if (rotSpeed != 0 && speed == 0)
-            {
-                fl_rotSpeed = (fl_rotSpeed + (wheelSpeedDiff / 1)) * Mathf.Rad2Deg;
-                fr_rotSpeed = -(fr_rotSpeed + (wheelSpeedDiff / 1)) * Mathf.Rad2Deg;
-                rl_rotSpeed = (rl_rotSpeed + (wheelSpeedDiff / 1)) * Mathf.Rad2Deg;
-                rr_rotSpeed = -(rr_rotSpeed + (wheelSpeedDiff / 1)) * Mathf.Rad2Deg;
-            }
-            else
-            {
-                fl_rotSpeed *= Mathf.Rad2Deg*-1;
-                fr_rotSpeed *= Mathf.Rad2Deg;
-                rl_rotSpeed *= Mathf.Rad2Deg*-1;
-                rr_rotSpeed *= Mathf.Rad2Deg;
-            }
-            SetSpeed(rl_wheel, rl_rotSpeed);
-            SetSpeed(rr_wheel, rr_rotSpeed);
-            SetSpeed(fl_wheel, fl_rotSpeed);
-            SetSpeed(fr_wheel, fr_rotSpeed);
-        }
+              
         // Update is called once per frame
         void Update()
         {
