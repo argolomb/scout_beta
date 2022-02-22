@@ -259,35 +259,89 @@
     <fdir1>1 0 0</fdir1>
     <maxContacts value="64"/>
   </gazebo>
-  <!-- <gazebo>
-        <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-            <updateRate>100.0</updateRate>
-            <robotNamespace></robotNamespace>
-            <leftFrontJoint>front_left_wheel</leftFrontJoint>
-            <rightFrontJoint>front_right_wheel</rightFrontJoint>
-            <leftRearJoint>rear_left_wheel</leftRearJoint>
-            <rightRearJoint>rear_right_wheel</rightRearJoint>
-            <wheelSeparation>4</wheelSeparation>
-            <wheelDiameter>0.32918</wheelDiameter>
-            <robotBaseFrame>base_link</robotBaseFrame>
-            <torque>1000</torque>
-            <commandTopic>cmd_vel</commandTopic>
-            <broadcastTF>true</broadcastTF>
-            <odometryTopic>odom</odometryTopic>
-            <odometryFrame>odom</odometryFrame>
-            <covariance_x>0.000100</covariance_x>
-            <covariance_y>0.000100</covariance_y>
-            <covariance_yaw>0.010000</covariance_yaw>
-        </plugin>
-    </gazebo> -->
-  <!-- <gazebo>
-        <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
-            <commandTopic>cmd_vel</commandTopic>
-            <odometryTopic>odom</odometryTopic>
-            <odometryFrame>odom</odometryFrame>
-            <odometryRate>20.0</odometryRate>
-            <robotBaseFrame>base_footprint</robotBaseFrame>
-        </plugin>
-    </gazebo> -->
+
+  <!-- Camera link -->
+  <link name="base_camera_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="1E-5" ixy="0" ixz="0" iyy="1E-5" iyz="-0" izz="1E-5"/>
+    </inertial>
+  </link>
+  <joint name="base_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.3895 0 0.094"/>
+    <parent link="base_link"/>
+    <child link="base_camera_link"/>
+  </joint>
+  <link name="base_camera_optical_frame">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="1E-5" ixy="0" ixz="0" iyy="1E-5" iyz="-0" izz="1E-5"/>
+    </inertial>
+  </link>
+  <joint name="base_camera_optical_joint" type="fixed">
+    <origin rpy="1.5707963267966 0 1.5707963267966" xyz="0 0 0"/>
+    <parent link="base_camera_link"/>
+    <child link="base_camera_optical_frame"/>
+  </joint>
+  <link name="laser_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0306228970175641 0.0007091682908278 0.0551974119471302"/>
+      <mass value="0.00833634573995571"/>
+      <inertia ixx="1.01866461240801E-06" ixy="-5.88447626567756E-08" ixz="7.83857244757914E-08" iyy="5.10039589974707E-07" iyz="-7.12664289617235E-09" izz="1.28270671527309E-06"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://sensors/meshes/laser_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://sensors/meshes/laser_link_collision.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="laser_joint" type="fixed">
+    <origin rpy="0 0 3.14" xyz="0.235 0 0.23"/>
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+<!-- <gazebo>
+      <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+          <updateRate>100.0</updateRate>
+          <robotNamespace></robotNamespace>
+          <leftFrontJoint>front_left_wheel</leftFrontJoint>
+          <rightFrontJoint>front_right_wheel</rightFrontJoint>
+          <leftRearJoint>rear_left_wheel</leftRearJoint>
+          <rightRearJoint>rear_right_wheel</rightRearJoint>
+          <wheelSeparation>4</wheelSeparation>
+          <wheelDiameter>0.32918</wheelDiameter>
+          <robotBaseFrame>base_link</robotBaseFrame>
+          <torque>1000</torque>
+          <commandTopic>cmd_vel</commandTopic>
+          <broadcastTF>true</broadcastTF>
+          <odometryTopic>odom</odometryTopic>
+          <odometryFrame>odom</odometryFrame>
+          <covariance_x>0.000100</covariance_x>
+          <covariance_y>0.000100</covariance_y>
+          <covariance_yaw>0.010000</covariance_yaw>
+      </plugin>
+  </gazebo> -->
+<!-- <gazebo>
+      <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+          <commandTopic>cmd_vel</commandTopic>
+          <odometryTopic>odom</odometryTopic>
+          <odometryFrame>odom</odometryFrame>
+          <odometryRate>20.0</odometryRate>
+          <robotBaseFrame>base_footprint</robotBaseFrame>
+      </plugin>
+  </gazebo> -->
 </robot>
 

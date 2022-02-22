@@ -4,6 +4,181 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="scout_v2">
+  <!-- Camera link -->
+  <link name="centerrs200_camera">
+    <!-- <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://realsense_gazebo_plugin/models/realsense_camera/meshes/realsense.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.0078 0.130 0.0192"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.0615752"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="9.108e-05"
+                     ixy="0"
+                     ixz="0"
+                     iyy="2.51e-06"
+                     iyz="0"
+                     izz="8.931e-05"
+            />
+        </inertial> -->
+  </link>
+  <!-- Connect camera to parent frame-->
+  <joint name="centerrealsense_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="centerrs200_camera"/>
+    <origin rpy="0 0 0" xyz="0.0695 0 0.662"/>
+  </joint>
+  <!-- Virtual links representing the cameras positons and orientations-->
+  <link name="centercolor"/>
+  <link name="centerdepth"/>
+  <link name="centerired1"/>
+  <link name="centerired2"/>
+  <!-- Joints positioning the virtual links with respect to the camera main link-->
+  <joint name="centercolor_joint" type="fixed">
+    <parent link="centerrs200_camera"/>
+    <child link="centercolor"/>
+    <!-- <origin xyz="0 -0.046 0.004" rpy="0 0 0"/> -->
+    <!-- The default position is change since in Rviz the cloud depth axis is Z not X-->
+    <origin rpy="1.5707963267948966 3.141592653589793 1.5707963267948966" xyz="0 -0.046 0.004"/>
+  </joint>
+  <joint name="centerdepth_joint" type="fixed">
+    <parent link="centerrs200_camera"/>
+    <child link="centerdepth"/>
+    <origin rpy="0 0 0" xyz="0 -0.03 0.004"/>
+  </joint>
+  <joint name="centerired1_joint" type="fixed">
+    <parent link="centerrs200_camera"/>
+    <child link="centerired1"/>
+    <origin rpy="0 0 0" xyz="0 -0.06 0.004"/>
+  </joint>
+  <joint name="centerired2_joint" type="fixed">
+    <parent link="centerrs200_camera"/>
+    <child link="centerired2"/>
+    <origin rpy="0 0 0" xyz="0 0.01 0.004"/>
+  </joint>
+  <!-- **********************************************************-->
+  <!-- GAZEBO DEFINITIONS ***************************************-->
+  <!-- Load plugin to the model ("robot" in urdf format)-->
+  <gazebo>
+    <plugin filename="librealsense_gazebo_plugin.so" name="centerr200">
+      <prefix>center</prefix>
+    </plugin>
+    <!--<pose frame="">0 0 0.015 0 0 0</pose>-->
+  </gazebo>
+  <!-- Load parameters to model's main link-->
+  <gazebo reference="centerrs200_camera">
+    <self_collide>0</self_collide>
+    <enable_wind>0</enable_wind>
+    <kinematic>0</kinematic>
+    <gravity>1</gravity>
+    <!--<mu>1</mu>-->
+    <mu2>1</mu2>
+    <fdir1>0 0 0</fdir1>
+    <!--<slip1>0</slip1>
+        <slip2>0</slip2>-->
+    <kp>1e+13</kp>
+    <kd>1</kd>
+    <!--<max_vel>0.01</max_vel>
+        <min_depth>0</min_depth>-->
+    <sensor name="centercolor" type="camera">
+      <pose frame="">0 -0.046 0.004 0 0 0</pose>
+      <camera name="centerrs200_camera">
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>RGB_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+    <sensor name="centerired1" type="camera">
+      <pose frame="">0 -0.06 0.004 0 0 0</pose>
+      <camera name="centerrs200_camera">
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>L_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.05</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+    <sensor name="centerired2" type="camera">
+      <pose frame="">0 0.01 0.004 0 0 0</pose>
+      <camera name="centerrs200_camera">
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>L_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.05</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+    <sensor name="centerdepth" type="depth">
+      <pose frame="">0 -0.03 0.004 0 0 0</pose>
+      <camera name="centerrs200_camera">
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.100</stddev>
+        </noise>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>60</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+  </gazebo>
   <!-- Base link -->
   <link name="base_link">
     <visual>
@@ -290,4 +465,3 @@
         </plugin>
     </gazebo> -->
 </robot>
-

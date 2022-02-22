@@ -8,6 +8,8 @@
 
     <xacro:include filename="$(find scout_description)/urdf/scout_wheel_type1.xacro" />
     <xacro:include filename="$(find scout_description)/urdf/scout_wheel_type2.xacro" />
+    <!-- ### Realsense camera include ###-->
+    <xacro:include filename="$(find scout_description)/urdf/realsense-RS200.macro.xacro"/>
 
     <!-- Variables -->
     <xacro:property name="M_PI" value="3.14159"/>
@@ -23,7 +25,10 @@
 
     <xacro:property name="wheel_length" value="1.1653e-01" />
     <xacro:property name="wheel_radius" value="1.6459e-01" />
-
+    <!-- center -->
+    <xacro:realsense-rs200 prefix="center" parent="base_link">
+        <origin xyz="0.0695 0 0.662" rpy="0 0 0" />
+    </xacro:realsense-rs200>
     <!-- Base link -->
     <link name="base_link">
         <visual>
