@@ -1,0 +1,11 @@
+<launch>
+    <arg name="tcp_ip" default="192.168.0.118"/>
+    <arg name="tcp_port" default="10000"/>
+
+    <node name="unity_endpoint" pkg="scout_unity" type="server_endpoint.py" output="screen">
+        <param name="tcp_ip" type="string" value="$(arg tcp_ip)"/>
+        <param name="tcp_port" type="int" value="$(arg tcp_port)"/>
+    </node>
+    <node name="camera_republish" type="republish" pkg="image_transport" output="screen" 
+          args="compressed in:=/camera/color/image_raw raw out:=/camera/color/image_raw" />
+</launch>
