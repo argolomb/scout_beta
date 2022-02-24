@@ -122,7 +122,7 @@ public class LaserScanSensor : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         if (!isScanning)
         {

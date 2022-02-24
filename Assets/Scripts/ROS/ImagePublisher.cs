@@ -64,7 +64,6 @@ public class ImagePublisher : MonoBehaviour
 //            compressedImage.header.Update();
             texture2D.ReadPixels(rect, 0, 0);
             compressedImage.data = texture2D.EncodeToJPG(qualityLevel);
-
             ros.Publish(cameraTopicName, compressedImage);
         }
     }

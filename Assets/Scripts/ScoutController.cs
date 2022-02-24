@@ -17,6 +17,7 @@ namespace RosSharp.Control
         */
         public Vector3 tensor;
         public Rigidbody rb;
+        public GameObject centerOfMass;
         public WheelCollider rear_left_wheel_colider;
         public WheelCollider rear_right_wheel_colider;
         public WheelCollider front_left_wheel_colider;
@@ -28,7 +29,7 @@ namespace RosSharp.Control
         public float wheelRadius = 0.16459f; //meters
         public float trackWidth = 0.58306f; // meters Distance between tyres     
 
-        private float torqueMax = 12f;
+        public float torqueMax = 12f;
 
         private double rl_wheel_vel;
         private double rr_wheel_vel;
@@ -43,6 +44,7 @@ namespace RosSharp.Control
             ros = ROSConnection.GetOrCreateInstance();
             ros.Subscribe<TwistMsg>("cmd_vel", ReceiveROSCmd);
             rb.inertiaTensor = tensor;
+            rb.centerOfMass = centerOfMass.transform.localPosition;
             Debug.Log("Start");
         }
 
@@ -99,10 +101,12 @@ namespace RosSharp.Control
                 integral_rl = 0; 
 
             }
+            /*
             Debug.Log("RL Speed: " + left_speed + "\n" +
                     "Current RL Speed: "+ rear_left_speed +"\n" +
                     "RL Speed Error :"+left_speed_error +"\n" +
                     "RL torque: "+ value_left);
+            */
         }
 
         [Tooltip("Proportional constant (counters current error)")]
@@ -150,11 +154,15 @@ namespace RosSharp.Control
                 front_left_wheel_colider.brakeTorque = torqueMax;
                 integral_fl=0;
             }
+            /*
             Debug.Log("FL Speed: " + left_speed + "\n" +
                     "Current FL Speed: "+ front_left_speed +"\n" +
                     "FL Speed Error :"+left_speed_error +"\n" +
                     "FL torque: "+ value_left);
+                    */
+
         }
+        
 
         [Tooltip("Proportional constant (counters current error)")]
 	    public float Kp_fr = 20f;
@@ -201,10 +209,12 @@ namespace RosSharp.Control
                 integral_fr = 0;
 
             }
+            /*
             Debug.Log("FR Speed: " + right_speed +"\n" +
                     "Current FR Speed: "+ front_right_speed +"\n" +  
                     "FR Speed Error :"+right_speed_error +"\n" +
                     "FR torque: "+ value_right);
+                    */
 
             
         }
@@ -254,10 +264,12 @@ namespace RosSharp.Control
                 integral_rr = 0; 
 
             }
+            /*
             Debug.Log("RR Speed: " + right_speed +"\n" +
                     "Current RR Speed: "+ rear_right_speed +"\n" +  
                     "RR Speed Error :"+right_speed_error +"\n" +
                     "RR torque: "+ value_right);
+                    */
 
             
         }

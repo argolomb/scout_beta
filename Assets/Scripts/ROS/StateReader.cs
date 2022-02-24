@@ -49,7 +49,7 @@ public class StateReader : MonoBehaviour
             names[i] = articulationChain[i].name;
     }
 
-    void Update()
+    void FixedUpdate()
     {
     }
 
