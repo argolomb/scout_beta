@@ -1,0 +1,31 @@
+<launch>
+    <arg name="tcp_ip" default="127.0.0.1"/>
+    <arg name="tcp_port" default="10000"/>
+
+    <node name="unity_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" output="screen">
+        <param name="tcp_ip" type="string" value="$(arg tcp_ip)"/>
+        <param name="tcp_port" type="int" value="$(arg tcp_port)"/>
+    </node>
+
+    <!-- Velodyne -->
+    <arg name="calibration" default="$(find velodyne_pointcloud)/params/VLP16db.yaml" />
+    <arg name="manager" default="velodyne_pointcloud" />
+    <arg name="max_range" default="100.0" />
+    <arg name="min_range" default="0.1" />
+
+    <node pkg="velodyne_pointcloud" type="transform_node" name="$(arg manager)">
+        <param name="model" value="VLP16"/>
+        <param name="calibration" value="$(arg calibration)"/>
+        <param name="max_range" value="$(arg max_range)"/>
+        <param name="min_range" value="$(arg min_range)"/>
+        <!-- <param name="view_direction" value="0"/> -->
+        <!-- <param name="view_width" value="360"/> -->
+    </node>
+
+    <node pkg="tf" type="static_transform_publisher" name="velodyne_tf" args="1 0 0 0 0 0 1 base_link velodyne 20" />
+
+    <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="1 0 0 0 0 0 1 base_link camera 20" />
+
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find scout_unity_sim)/config/rviz/default.rviz" />
+
+</launch>
