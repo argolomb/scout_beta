@@ -8,6 +8,8 @@ Panels:
         - /Status1
         - /PointCloud21
         - /Image1
+        - /Imu1
+        - /Imu1/Status1
       Splitter Ratio: 0.3301662802696228
     Tree Height: 399
   - Class: rviz/Selection
@@ -94,6 +96,16 @@ Visualization Manager:
       Transport Hint: compressed
       Unreliable: false
       Value: true
+    - Alpha: 1
+      Class: rviz_plugin_tutorials/Imu
+      Color: 204; 51; 204
+      Enabled: true
+      History Length: 1
+      Name: Imu
+      Queue Size: 10
+      Topic: /imu/raw_data
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -122,7 +134,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 14.049280166625977
+      Distance: 3.5781495571136475
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -130,9 +142,9 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -0.028473295271396637
+        Y: 0.008450474590063095
+        Z: 0.014158280566334724
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false

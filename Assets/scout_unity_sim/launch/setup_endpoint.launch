@@ -1,6 +1,7 @@
 <launch>
     <arg name="tcp_ip" default="127.0.0.1"/>
     <arg name="tcp_port" default="10000"/>
+    <arg name="rqt_controller" default="true"/>
 
     <node name="unity_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" output="screen">
         <param name="tcp_ip" type="string" value="$(arg tcp_ip)"/>
@@ -21,7 +22,11 @@
         <!-- <param name="view_direction" value="0"/> -->
         <!-- <param name="view_width" value="360"/> -->
     </node>
-
+    
+    <group if="$(arg rqt_controller)">
+        <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_controller"/>
+    </group>
+    
     <node pkg="tf" type="static_transform_publisher" name="velodyne_tf" args="1 0 0 0 0 0 1 base_link velodyne 20" />
 
     <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="1 0 0 0 0 0 1 base_link camera 20" />
