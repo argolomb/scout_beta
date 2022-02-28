@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -435,6 +435,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 145799392}
+  - {fileID: 1343620212}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1156,6 +1157,70 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.95, y: 0.21, z: 0.7}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1343620211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1343620212}
+  - component: {fileID: 1343620213}
+  - component: {fileID: 1343620214}
+  m_Layer: 0
+  m_Name: ROS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1343620212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343620211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 411186218}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1343620213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343620211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6f7bbd467eea8899d7612683d56457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ClockMode: 0
+  m_LastSetClockMode: 0
+  m_PublishRateHz: 100
+--- !u!114 &1343620214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343620211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c5a5983b5cab5c0aac9c1e0ed92919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PublishRateHz: 20
+  m_GlobalFrameIds:
+  - map
+  - odom
+  m_RootGameObject: {fileID: 1161630331}
 --- !u!1001 &1378578241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1320,7 +1385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7367901733237620759, guid: ec654fbb22c52db7cba81f296ebaadad, type: 3}
       propertyPath: m_Name
-      value: IMU
+      value: imu_link
       objectReference: {fileID: 0}
     - target: {fileID: 7367901733237620761, guid: ec654fbb22c52db7cba81f296ebaadad, type: 3}
       propertyPath: m_ConnectedBody
@@ -1490,7 +1555,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d4f3489cc0b576726ba263a387f03b77, type: 2}
     - target: {fileID: 919132149155446097, guid: 73a10d65c6ca92cd5b701de833c59f91, type: 3}
       propertyPath: m_Name
-      value: puck
+      value: velodyne
       objectReference: {fileID: 0}
     - target: {fileID: 4913777613711978600, guid: 73a10d65c6ca92cd5b701de833c59f91, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1528,19 +1593,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a287bdc4ce5e8e6ed836a75a7d91a78c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a287bdc4ce5e8e6ed836a75a7d91a78c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a287bdc4ce5e8e6ed836a75a7d91a78c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a287bdc4ce5e8e6ed836a75a7d91a78c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a287bdc4ce5e8e6ed836a75a7d91a78c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1622,6 +1687,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3f8febe3e944868a1e94a7decab54e, type: 3}
+--- !u!1 &1765622784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7367901733237620759, guid: ec654fbb22c52db7cba81f296ebaadad, type: 3}
+  m_PrefabInstance: {fileID: 1435469573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1765622785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765622784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c5a5983b5cab5c0aac9c1e0ed92919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PublishRateHz: 20
+  m_GlobalFrameIds:
+  - base_link
+  m_RootGameObject: {fileID: 1765622784}
 --- !u!1 &1873192119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1911,11 @@ Transform:
   m_Father: {fileID: 145799392}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2092918613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 73a10d65c6ca92cd5b701de833c59f91, type: 3}
+  m_PrefabInstance: {fileID: 1504527565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2100228274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,6 +2965,7 @@ GameObject:
   - component: {fileID: 5795945418398197654}
   - component: {fileID: 2348453324927753811}
   - component: {fileID: 3460511008260035280}
+  - component: {fileID: 6528621285844821611}
   m_Layer: 0
   m_Name: Puck (VLP16)
   m_TagString: Untagged
@@ -2881,6 +2973,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6528621285844821611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528621285844821610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c5a5983b5cab5c0aac9c1e0ed92919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PublishRateHz: 20
+  m_GlobalFrameIds:
+  - base_link
+  m_RootGameObject: {fileID: 2092918613}
 --- !u!23 &6904818000959750116
 MeshRenderer:
   m_ObjectHideFlags: 0

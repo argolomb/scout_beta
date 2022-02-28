@@ -6,10 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /PointCloud21
+        - /TF1
         - /Image1
-        - /Imu1
-        - /Imu1/Status1
       Splitter Ratio: 0.3301662802696228
     Tree Height: 399
   - Class: rviz/Selection
@@ -84,6 +82,37 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        imu_link:
+          Value: true
+        map:
+          Value: true
+        odom:
+          Value: true
+        velodyne:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        map:
+          odom:
+            base_link:
+              imu_link:
+                {}
+              velodyne:
+                {}
+      Update Interval: 0
+      Value: true
     - Class: rviz/Image
       Enabled: true
       Image Topic: /camera/color/image_raw
@@ -99,18 +128,18 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz_plugin_tutorials/Imu
       Color: 204; 51; 204
-      Enabled: true
+      Enabled: false
       History Length: 1
       Name: Imu
       Queue Size: 10
       Topic: /imu/raw_data
       Unreliable: false
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: velodyne
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -134,7 +163,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.5781495571136475
+      Distance: 15.273347854614258
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -142,17 +171,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.028473295271396637
-        Y: 0.008450474590063095
-        Z: 0.014158280566334724
+        X: -0.06648514419794083
+        Y: -0.09107691794633865
+        Z: 0.11141318082809448
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.7303980588912964
       Target Frame: <Fixed Frame>
-      Yaw: 0.785398006439209
+      Yaw: 0.9603978395462036
     Saved: ~
 Window Geometry:
   Displays:
