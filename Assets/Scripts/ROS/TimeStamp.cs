@@ -37,7 +37,7 @@ namespace Unity.Robotics.Core
 
         public static implicit operator TimeStamp(TimeMsg stamp)
         {
-            return new TimeStamp((int) stamp.sec, stamp.nanosec);
+            return new TimeStamp((int)stamp.sec, stamp.nanosec);
         }
     }
 }

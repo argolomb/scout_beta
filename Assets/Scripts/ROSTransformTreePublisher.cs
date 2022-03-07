@@ -70,11 +70,7 @@ public class ROSTransformTreePublisher : MonoBehaviour
         {
             var tfRootToGlobal = new TransformStampedMsg(     
                 new HeaderMsg{ 
-                stamp= new TimeMsg
-                {
-                    sec = (uint)Clock.time,
-                    nanosec = (uint)((Clock.time - Math.Floor(Clock.time)) * Clock.k_NanoSecondsInSeconds)
-                },
+                stamp= new TimeStamp(Clock.time),
                 frame_id=(string)m_GlobalFrameIds.Last(),
                 },
                 m_TransformRoot.name,

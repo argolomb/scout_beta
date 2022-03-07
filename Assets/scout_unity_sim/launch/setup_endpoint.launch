@@ -31,6 +31,8 @@
 
     <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="1 0 0 0 0 0 1 base_link camera 20" /> -->
 
+    <!-- <include file="$(find scout_unity_sim)/launch/nmea2fix.launch" /> -->
+
     <node type="rviz" name="rviz" pkg="rviz" args="-d $(find scout_unity_sim)/config/rviz/default.rviz" />
 
 </launch>
