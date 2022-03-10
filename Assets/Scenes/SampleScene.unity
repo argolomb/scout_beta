@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,9 +229,9 @@ GameObject:
   m_Component:
   - component: {fileID: 110967166}
   - component: {fileID: 110967171}
+  - component: {fileID: 110967167}
   - component: {fileID: 110967169}
   - component: {fileID: 110967168}
-  - component: {fileID: 110967167}
   m_Layer: 0
   m_Name: imu_link
   m_TagString: Untagged
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110967165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673c5a9904992934591665ce55b76d67, type: 3}
+  m_Script: {fileID: 11500000, guid: 7724d69d8cddc8981aee4cb75301fe79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _topicName: imu/raw_data
@@ -335,18 +335,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 110967165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd5bccdbe4569ad2c9b2dfcbbbe665d8, type: 3}
+  m_Script: {fileID: 11500000, guid: f5af4819ff46966abb1fc25924453e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scanRate: 100
   enableGaussianNoise: 0
   enableBiasNoise: 0
   setting:
-    quatSigma: {x: 0.1, y: 0.1, z: 0.1, w: 0.1}
+    quatSigma: {x: 0, y: 0, z: 0, w: 0}
     quatBias: {x: 0, y: 0, z: 0, w: 0}
-    angVelSigma: {x: 0.1, y: 0.1, z: 0.1}
+    angVelSigma: {x: 0, y: 0, z: 0}
     angVelBias: {x: 0, y: 0, z: 0}
-    linAccSigma: {x: 0.1, y: 0.1, z: 0.1}
+    linAccSigma: {x: 0, y: 0, z: 0}
     linAccBias: {x: 0, y: 0, z: 0}
 --- !u!54 &110967171
 Rigidbody:
@@ -668,7 +668,6 @@ GameObject:
   - component: {fileID: 411186218}
   - component: {fileID: 411186219}
   - component: {fileID: 411186220}
-  - component: {fileID: 411186221}
   m_Layer: 0
   m_Name: scout_v2
   m_TagString: Untagged
@@ -747,23 +746,6 @@ MonoBehaviour:
   Kp_rr: 10
   Ki_rr: 1
   Kd_rr: 0
---- !u!114 &411186221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411186217}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d9c4fd656c1501c83af4aede4c2993, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PublishRateHz: 20
-  m_GlobalFrameIds: odom
-  m_RootGameObject: {fileID: 68239535}
-  m_LastPublishTimeSeconds: 0
-  m_ROS: {fileID: 0}
 --- !u!1 &447300398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194229}
+  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1571,6 +1553,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &963194226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7736de0419960627bf08f933fbb6002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 411186218}
+  offsetPosition: {x: 0, y: 0.5, z: -2.5}
+  offsetPositionSpace: 1
+  lookAt: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -1628,22 +1626,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7736de0419960627bf08f933fbb6002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 411186218}
-  offsetPosition: {x: 0, y: 0.5, z: -2.5}
-  offsetPositionSpace: 1
-  lookAt: 0
 --- !u!1 &1117895233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,8 +1930,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1379230790}
   - component: {fileID: 1379230794}
-  - component: {fileID: 1379230793}
   - component: {fileID: 1379230792}
+  - component: {fileID: 1379230791}
   m_Layer: 0
   m_Name: laser_link
   m_TagString: Untagged
@@ -1973,6 +1955,20 @@ Transform:
   m_Father: {fileID: 2085242383}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1379230791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379230789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae66080189d57d3787bab35e9ad6d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _topicName: velodyne_packets
+  _frameId: velodyne
 --- !u!114 &1379230792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1986,20 +1982,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBaseLink: 0
---- !u!114 &1379230793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379230789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ae66080189d57d3787bab35e9ad6d63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _topicName: velodyne_packets
-  _frameId: laser_link
 --- !u!114 &1379230794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2009,7 +1991,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1379230789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69539be64e7bea218b54ad8a17a7fa0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 62c1d989224d8998ea4fd74975ad8d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateDir: 1
@@ -2717,9 +2699,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2083145822}
+  - component: {fileID: 2083145823}
   - component: {fileID: 2083145824}
   - component: {fileID: 2083145825}
-  - component: {fileID: 2083145823}
   m_Layer: 0
   m_Name: camera
   m_TagString: Untagged
