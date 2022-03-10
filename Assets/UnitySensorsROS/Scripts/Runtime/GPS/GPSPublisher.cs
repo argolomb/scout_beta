@@ -35,7 +35,7 @@ public class GPSPublisher : MonoBehaviour
         this._message.header.frame_id = this._frameId;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         this._timeElapsed += Time.deltaTime;
 
@@ -55,7 +55,7 @@ public class GPSPublisher : MonoBehaviour
             this._message.header.stamp.nanosec = nanosec;
             this._message.sentence = this._gps.gpgga;
 
-            this._ros.Send(this._topicName, this._message);
+            this._ros.Publish(this._topicName, this._message);
         }
     }
 }

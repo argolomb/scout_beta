@@ -19,7 +19,7 @@ public class ROSTransformTreePublisher : MonoBehaviour
     [SerializeField]
     double m_PublishRateHz = 20f;
     [SerializeField]
-    List<string> m_GlobalFrameIds = new List<string> { "map", "odom" };
+    List<string> m_GlobalFrameIds = new List<string> { "odom" };
     [SerializeField]
     GameObject m_RootGameObject;
     
@@ -104,7 +104,7 @@ public class ROSTransformTreePublisher : MonoBehaviour
         m_LastPublishTimeSeconds = Clock.FrameStartTimeInSeconds;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (ShouldPublishMessage)
         {

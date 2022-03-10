@@ -18,11 +18,6 @@ public class WheelRotation : MonoBehaviour{
         wheelTransform.position = _position;
         wheelTransform.rotation = _rotation*Quaternion.Euler(0,270,0);
         
-        Debug.Log(_position);
-
-        
-        
-
     }
 
 
