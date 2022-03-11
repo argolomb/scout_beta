@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+        <remap from="/cloud_in" to="/velodyne_points"/>
+    </node>
+
+    <node pkg="gmapping" type="slam_gmapping" name="gmapping" output="screen" respawn="false" respawn_delay="0" >
+        <!-- <remap from="scan" to="scan2"/> -->
+        <param name="maxUrange" value="8"/>
+        <param name="maxRange" value="10"/>
+    </node>
+</launch>

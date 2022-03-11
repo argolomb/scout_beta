@@ -3,6 +3,9 @@
     <arg name="tcp_port" default="10000"/>
     <arg name="rqt_controller" default="true"/>
 
+    <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find scout_description)/urdf/scout_v2.urdf'" />
+    <param name="robot_description" command="$(arg urdf_file)" />
+
     <node name="unity_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" output="screen">
         <param name="tcp_ip" type="string" value="$(arg tcp_ip)"/>
         <param name="tcp_port" type="int" value="$(arg tcp_port)"/>
