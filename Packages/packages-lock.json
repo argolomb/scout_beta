@@ -23,8 +23,8 @@
       "hash": "42812d5b1c4109ce7910da745c7fb8b4d0450639"
     },
     "com.unity.burst": {
-      "version": "1.4.8",
-      "depth": 1,
+      "version": "1.7.0",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1"
@@ -81,8 +81,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
-      "version": "1.2.1",
-      "depth": 1,
+      "version": "1.2.5",
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
