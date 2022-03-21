@@ -38,11 +38,11 @@ public class ImagePublisher : MonoBehaviour
     private float _timeStamp = 0f;
 
     public float stereo_offset = 0.01f;
-     private CameraInfoMsg infoCamera;
 
-     public bool is_stereo = false;
+    private CameraInfoMsg infoCamera;
+    public bool is_stereo = false;
 
-     private HeaderMsg header_msg;
+    private HeaderMsg header_msg;
 
     void Start()
     {
@@ -65,11 +65,11 @@ public class ImagePublisher : MonoBehaviour
 
         header_msg = new HeaderMsg();
         header_msg.frame_id = frameID;
+
         if (is_stereo){
             infoCamera = CameraInfoGenerator.ConstructCameraInfoMessage(imageCamera, header_msg, stereo_offset);
         } else {
-
-        infoCamera = CameraInfoGenerator.ConstructCameraInfoMessage(imageCamera, header_msg);
+            infoCamera = CameraInfoGenerator.ConstructCameraInfoMessage(imageCamera, header_msg);
         }
         // Call back
         Camera.onPostRender += UpdateImage;
@@ -79,16 +79,20 @@ public class ImagePublisher : MonoBehaviour
     private void UpdateImage(Camera cameraObject)
     {
         
-
         if (texture2D != null && cameraObject == imageCamera)
         {
+            // Update time
+            this._timeStamp = Time.time;
+
             uint sec = (uint)Math.Truncate(this._timeStamp);
             uint nanosec = (uint)( (this._timeStamp - sec)*1e+9 );
             
             var timeMessage = new TimeMsg(sec, nanosec);
             
             header_msg.seq = seq;
-            header_msg.stamp = timeMessage;
+            header_msg.stamp.sec  = sec;
+            header_msg.stamp.nanosec  = nanosec;
+
             
             //            compressedImage.header.Update();
             texture2D.ReadPixels(rect, 0, 0);

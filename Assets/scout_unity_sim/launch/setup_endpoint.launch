@@ -29,7 +29,19 @@
     <group if="$(arg rqt_controller)">
         <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_controller"/>
     </group>
+
     
+    <group ns="stereo">
+        <node name="left_repub" type="republish" pkg="image_transport" output="screen" args="compressed in:=/stereo/left/image_raw raw out:=/stereo/left/image_raw" />
+
+        <node name="right_repub" type="republish" pkg="image_transport" output="screen" args="compressed in:=/stereo/right/image_raw raw out:=/stereo/right/image_raw" />
+
+        <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_exec"> 
+            <param name="queue_size" value="5000" />
+            <param name="approximate_sync" value="True" />
+        </node>
+
+    </group>
     <!-- <node pkg="tf" type="static_transform_publisher" name="velodyne_tf" args="1 0 0 0 0 0 1 base_link velodyne 20" />
 
     <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="1 0 0 0 0 0 1 base_link camera 20" /> -->
