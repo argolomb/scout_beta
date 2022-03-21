@@ -93,6 +93,8 @@ public class ImagePublisher : MonoBehaviour
             header_msg.stamp.sec  = sec;
             header_msg.stamp.nanosec  = nanosec;
 
+            compressedImage.header.stamp = timeMessage;
+
             
             //            compressedImage.header.Update();
             texture2D.ReadPixels(rect, 0, 0);
