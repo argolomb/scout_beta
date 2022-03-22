@@ -31,7 +31,12 @@
         <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_controller"/>
     </group>
     
-    <node pkg="tf" type="static_transform_publisher" name="stereo_l_tf" args="0 0 0 0 0 1.57 Sensors stereo_camera  20" />  
+
+
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="stereo_l_tf" args="0 0 0 0 1.57 0 /stereo_camera /point_cloud2" />  -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="stereo_l_tf" args="0 0 0 0 1.57 0 /stereo_camera /point_cloud2" />   
+    
+
     
     <group ns="stereo">
 
