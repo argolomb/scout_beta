@@ -2,6 +2,7 @@
     <arg name="tcp_ip" default="127.0.0.1"/>
     <arg name="tcp_port" default="10000"/>
     <arg name="rqt_controller" default="true"/>
+    <param name ="/use_sim_time" value="true"/>
 
     <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find scout_description)/urdf/scout_v2.urdf'" />
     <param name="robot_description" command="$(arg urdf_file)" />
@@ -29,9 +30,11 @@
     <group if="$(arg rqt_controller)">
         <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_controller"/>
     </group>
-
+    
+    <node pkg="tf" type="static_transform_publisher" name="stereo_l_tf" args="0 0 0 0 0 1.57 Sensors stereo_camera  20" />  
     
     <group ns="stereo">
+
         <node name="left_repub" type="republish" pkg="image_transport" output="screen" args="compressed in:=/stereo/left/image_raw raw out:=/stereo/left/image_raw" />
 
         <node name="right_repub" type="republish" pkg="image_transport" output="screen" args="compressed in:=/stereo/right/image_raw raw out:=/stereo/right/image_raw" />
@@ -42,7 +45,8 @@
         </node>
 
     </group>
-    <!-- <node pkg="tf" type="static_transform_publisher" name="velodyne_tf" args="1 0 0 0 0 0 1 base_link velodyne 20" />
+ <!--    
+    <node pkg="tf" type="static_transform_publisher" name="velodyne_tf" args="1 0 0 0 0 0 1 base_link velodyne 20" />
 
     <node pkg="tf" type="static_transform_publisher" name="camera_tf" args="1 0 0 0 0 0 1 base_link camera 20" /> -->
 
