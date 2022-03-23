@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+ 
+ <node pkg="tf2_ros" type="static_transform_publisher" name="stereo_l_tf" args="0 0 0 -1.57 0 -1.57 /camera_left /point_cloud2" /> 
+ 
+</launch>
