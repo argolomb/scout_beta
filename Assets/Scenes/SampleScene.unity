@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7724d69d8cddc8981aee4cb75301fe79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _topicName: imu/raw_data
+  _topicName: imu/data
   _frameId: imu_link
   _message:
     orientation:
@@ -516,6 +516,85 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113379108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba5fd74d37a6cf4284698624eb8f6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsBaseLink: 0
+--- !u!1 &169234258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169234259}
+  - component: {fileID: 169234262}
+  - component: {fileID: 169234261}
+  - component: {fileID: 169234260}
+  m_Layer: 0
+  m_Name: gps_link
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169234259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169234258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2085242383}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169234260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169234258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858e40ed6000d282397014ef04bc261a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _topicName: nmea_sentence
+  _frameId: gps_link
+--- !u!114 &169234261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169234258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc926e892bcba3328a8ff79243f05077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseLatitude: 35
+  _baseLongitude: 35
+  _baseAltitude: 0
+  _satelliteNum: 8
+  _HDOP: 1
+  _geoidHeight: 0.25
+  _updateRate: 20
+--- !u!114 &169234262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169234258}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fba5fd74d37a6cf4284698624eb8f6aa, type: 3}
@@ -2423,7 +2502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581301065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.17000002, z: 0.063}
+  m_LocalPosition: {x: 0.05, y: 0.03, z: 0.565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2065370329}
@@ -2444,11 +2523,11 @@ MonoBehaviour:
   cameraTopicName: /stereo/right/image_raw/compressed
   camInfoTopic: /stereo/right/camera_info
   imageCamera: {fileID: 1581301068}
-  resolutionWidth: 1280
-  resolutionHeight: 720
+  resolutionWidth: 640
+  resolutionHeight: 480
   qualityLevel: 50
   frameID: point_cloud2
-  stereo_offset: 0.01
+  stereo_offset: 0.1
   is_stereo: 1
 --- !u!20 &1581301068
 Camera:
@@ -2463,7 +2542,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -2475,7 +2554,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 46.82645
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3124,7 +3203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083145821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0.17000002, z: 0.063}
+  m_LocalPosition: {x: -0.05, y: 0.03, z: 0.565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2065370329}
@@ -3156,10 +3235,10 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 31.176912
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -3168,7 +3247,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 46.82645
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3201,8 +3280,8 @@ MonoBehaviour:
   cameraTopicName: /stereo/left/image_raw/compressed
   camInfoTopic: /stereo/left/camera_info
   imageCamera: {fileID: 2083145824}
-  resolutionWidth: 1280
-  resolutionHeight: 720
+  resolutionWidth: 640
+  resolutionHeight: 480
   qualityLevel: 50
   frameID: point_cloud2
   stereo_offset: 0.1
@@ -3239,6 +3318,7 @@ Transform:
   - {fileID: 1379230790}
   - {fileID: 110967166}
   - {fileID: 2065370329}
+  - {fileID: 169234259}
   m_Father: {fileID: 113379109}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

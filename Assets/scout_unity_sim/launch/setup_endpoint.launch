@@ -26,6 +26,11 @@
         <!-- <param name="view_direction" value="0"/> -->
         <!-- <param name="view_width" value="360"/> -->
     </node>
+    <!-- gps message in latitude longityde (degrees) -->
+    <node pkg="nmea_navsat_driver" name="nmea2fix_node" type="nmea_topic_driver">
+      <remap from="/fix" to="/gps/fix"/>
+    </node> 
+
     
     <group if="$(arg rqt_controller)">
         <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_controller"/>

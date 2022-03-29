@@ -14,7 +14,13 @@
         Example:
            $ roslaunch rtabmap_ros bumblebee.launch -->
      
-  <!-- Choose between depth and stereo, set both to false to do only scan -->      
+  <!-- Choose between depth and stereo, set both to false to do only scan -->  
+    <!--                       Navsat                      -->
+  <!-- <include file="$(find subot_rtab_unity)/launch/start_navsat.launch"></include> -->
+
+  <!--                       Robot-Localization                       -->
+  <include file="$(find subot_rtab_unity)/launch/ekf_localization.launch"></include>    
+
   <arg name="stereo"                    default="true"/>
   <arg     if="$(arg stereo)" name="depth"  default="false"/>
   <arg unless="$(arg stereo)" name="depth"  default="true"/>
@@ -342,7 +348,7 @@
       <remap from="odom"                   to="$(arg odom_topic)"/>
       <remap from="imu"                    to="$(arg imu_topic)"/>
 
-      <param name="Rtabmap/DetectionRate"                type="string"      value="1.0" />
+      <param name="Rtabmap/DetectionRate"                type="string"      value="1.0" /> 
       <param name="RGBD/OptimizeMaxError"                type="string"      value="0"/>
 
       <param name="Grid/FromDepth"                       type="string"      value="true"/>
