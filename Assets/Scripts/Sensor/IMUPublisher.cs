@@ -37,7 +37,7 @@ public class IMUPublisher : MonoBehaviour
         this._message.header.frame_id = this._frameId;
     }
 
-    void fixedUpdate()
+    void Update()
     {
         this._timeElapsed += Time.deltaTime;
 
@@ -77,7 +77,7 @@ public class IMUPublisher : MonoBehaviour
                                linear_acceleration_ros.y,
                                linear_acceleration_ros.z);
             this._message.linear_acceleration = linear_acceleration;
-            this._ros.Publish(this._topicName, this._message);
+            this._ros.Send(this._topicName, this._message);
         }
     }
 }

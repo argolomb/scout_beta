@@ -1,6 +1,6 @@
 <launch>
 
-    <include file="$(find subot_navigation)/launch/start_navsat.launch"/>
+    <include file="$(find subot_rtab_unity)/launch/start_navsat.launch"/>
 
     <!-- Run the ekf for map to odom config -->
     <node pkg="robot_localization" type="ekf_localization_node" name="robot_localization">

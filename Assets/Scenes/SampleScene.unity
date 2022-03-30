@@ -387,7 +387,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110967165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7724d69d8cddc8981aee4cb75301fe79, type: 3}
+  m_Script: {fileID: 11500000, guid: 2baf3cfd0484d4fb8aa3626f52606ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _topicName: imu/data
@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 169234262}
   - component: {fileID: 169234261}
   - component: {fileID: 169234260}
+  - component: {fileID: 169234263}
   m_Layer: 0
   m_Name: gps_link
   m_TagString: Untagged
@@ -569,6 +570,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topicName: nmea_sentence
   _frameId: gps_link
+  _timeElapsed: 0
+  _timeStamp: 0
+  _ros: {fileID: 0}
+  _message:
+    sentence: 
+  _gps: {fileID: 0}
 --- !u!114 &169234261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,8 +588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc926e892bcba3328a8ff79243f05077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseLatitude: 35
-  _baseLongitude: 35
+  _baseLatitude: 10
+  _baseLongitude: 10
   _baseAltitude: 0
   _satelliteNum: 8
   _HDOP: 1
@@ -601,6 +608,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBaseLink: 0
+--- !u!114 &169234263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169234258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4072a511603c277029a24913af269eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _topicName: nmea_sentence
+  _frameId: nmea_link
 --- !u!1 &268376326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,7 +2155,6 @@ GameObject:
   - component: {fileID: 1379230794}
   - component: {fileID: 1379230792}
   - component: {fileID: 1379230791}
-  - component: {fileID: 1379230793}
   m_Layer: 0
   m_Name: laser_link
   m_TagString: Untagged
@@ -2185,18 +2205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBaseLink: 0
---- !u!114 &1379230793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379230789}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d928fda1f4ea4f18f589c4b7da6aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1379230794
 MonoBehaviour:
   m_ObjectHideFlags: 0
