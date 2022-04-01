@@ -1,0 +1,34 @@
+footprint: [[-0.47, -0.35], [-0.47, 0.35], [0.47, 0.35], [0.47, -0.35]]
+footprint_padding: 0.1
+
+robot_base_frame: base_footprint
+update_frequency: 2.0
+publish_frequency: 2.0
+transform_tolerance: 0.7
+
+obstacle_range: 10.0
+raytrace_range: 15.0 
+
+resolution: 0.05
+
+footprint_clearing_enabled: true
+
+#layer definitions
+static_layer:
+    #map_topic: /rtabmap/grid_map
+    subscribe_to_updates: true
+    lethal_cost_threshold: 100
+    track_unknown_space: false #true
+    use_maximum: false
+    trinary_costmap: true
+
+obstacles_layer:
+    observation_sources: r200_obstacles r200_ground ouster_lidar velodyne_lidar
+  #  #r200_obstacles: {data_type: PointCloud2, clearing: true, marking: true, topic: /rtabmap/local_grid_obstacle, observation_persistence: 0.0}
+  #  #r200_ground: {data_type: PointCloud2, clearing: true, marking: false, topic: /rtabmap/local_grid_ground, observation_persistence: 0.0}
+    ouster_lidar: {data_type: PointCloud2, clearing: false, marking: true, topic: /os1_cloud_node/points, observation_persistence: 0.0, min_obstacle_height: 0.3, max_obstacle_height: 2.0, inf_is_valid: true}
+    velodyne_lidar: {data_type: PointCloud2, clearing: false, marking: true, topic: /velodyne_points, observation_persistence: 0.0, min_obstacle_height: 0.3, max_obstacle_height: 2.0, inf_is_valid: true}
+
+inflation_layer:
+    inflation_radius: 1 
+    cost_scaling_factor: 5.0

@@ -37,6 +37,10 @@
     </group>
 
     <node pkg="tf2_ros" type="static_transform_publisher" name="stereo_l_tf" args="0 0 0 -1.57 0 -1.57 /camera_left /point_cloud2" />
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="stereo_r_tf" args="0 0.0 0 -1.57 0 -1.57 /camera_right /point_cloud1" />
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="imu_tf" args="0 0 0 0 0 -1.57 /imu_link /imu2" /> -->
+
     
     <group ns="stereo">
 
@@ -54,7 +58,7 @@
             <param name="disparity_range" value="256"/> 
             <param name="uniqueness_ratio" value="3"/> 
             <param name="texture_threshold" value="10"/>
-            <param name="speckle_size" value="47"/> 
+            <param name="speckle_size" value="60"/> 
             <param name="speckle_range" value="2"/> 
         </node>
 

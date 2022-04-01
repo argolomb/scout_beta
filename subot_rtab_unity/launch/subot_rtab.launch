@@ -70,7 +70,7 @@
   <arg name="stereo_namespace"        default=""/>
   <arg name="left_image_topic"        default="/stereo/left/image_raw" />
   <arg name="right_image_topic"       default="/stereo/right/image_raw" />      <!-- using grayscale image for efficiency -->
-  <arg name="left_camera_info_topic"  default="/stereo/right/camera_info" />
+  <arg name="left_camera_info_topic"  default="/stereo/left/camera_info" />
   <arg name="right_camera_info_topic" default="/stereo/right/camera_info" />
   
   <!-- Already synchronized RGB-D related topic, with rtabmap_ros/rgbd_sync nodelet -->
@@ -97,7 +97,7 @@
    
   <arg name="visual_odometry"          default="true"/>          <!-- Launch rtabmap visual odometry node -->
   <arg name="icp_odometry"             default="false"/>         <!-- Launch rtabmap icp odometry node -->
-  <arg name="odom_topic"               default="odom"/>          <!-- Odometry topic name -->
+  <arg name="odom_topic"               default="odom"/>          <!-- Odometry topic name (nao usado)-->
   <arg name="vo_frame_id"              default="$(arg odom_topic)"/> <!-- Visual/Icp odometry frame ID for TF -->
   <arg name="publish_tf_odom"          default="false"/>
   <arg name="odom_tf_angular_variance" default="1"/>             <!-- If TF is used to get odometry, this is the default angular variance -->

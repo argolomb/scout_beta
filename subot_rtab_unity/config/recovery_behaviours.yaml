@@ -1,0 +1,23 @@
+recovery_behaviour_enabled: true
+
+recovery_behaviors:
+  - name: 'conservative_reset'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+  # - name: 'aggressive_reset'
+  #   type: 'clear_costmap_recovery/ClearCostmapRecovery'
+  # - name: 'moveback_recovery'
+  #   type: 'moveback_recovery/MoveBackRecovery'
+
+conservative_reset:
+  layer_names: ["obstacles_layer"]
+  reset_distance: 2.0
+
+# aggressive_reset:
+#   layer_names: ["obstacles_layer"]
+#   reset_distance: 10.0
+
+moveback_recovery:
+  controller_frequency: 5.0
+  linear_vel_back     : -0.3
+  step_back_length    : 0.5
+  step_back_timeout   : 30.0
